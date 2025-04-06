@@ -176,7 +176,9 @@ def get_jyutping(text):
     jyutping_array = []
     punct_pattern = re.compile(r"^[{}]+$".format(re.escape("".join(punctuation))))
 
-    syllables = ToJyutping.get_jyutping_list(text)
+    jyutping_converter = ToJyutping.customize({'尼': 'lei4', '請': 'cing2'})
+    syllables = jyutping_converter.get_jyutping_list(text)
+    syllables = [(char, 'sing4' if jyutping == 'seng4' else jyutping) for char, jyutping in syllables]
 
     for word, syllable in syllables:
         if punct_pattern.match(word):
@@ -202,7 +204,7 @@ def get_bert_feature(text, word2ph):
 def g2p(text):
     # word2ph = []
     jyuping = get_jyutping(text)
-    # print(jyuping)
+    print(jyuping)
     # phones, tones, word2ph = jyuping_to_initials_finals_tones(jyuping)
     phones, word2ph = jyuping_to_initials_finals_tones(jyuping)
     # phones = ["_"] + phones + ["_"]
@@ -213,7 +215,8 @@ def g2p(text):
 
 if __name__ == "__main__":
     # text = "啊！但是《原神》是由,米哈\游自主，  [研发]的一款全.新开放世界.冒险游戏"
-    text = "佢個鋤頭太短啦。"
+    text = "達噠綫跣線善"
+    text = "成條"
     text = text_normalize(text)
     # phones, tones, word2ph = g2p(text)
     phones, word2ph = g2p(text)
