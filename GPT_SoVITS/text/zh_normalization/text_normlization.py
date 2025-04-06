@@ -129,7 +129,7 @@ class TextNormalizer:
 
     def normalize_sentence(self, sentence: str) -> str:
         # basic character conversions
-        sentence = tranditional_to_simplified(sentence)
+        # sentence = tranditional_to_simplified(sentence)
         sentence = sentence.translate(F2H_ASCII_LETTERS).translate(F2H_DIGITS).translate(F2H_SPACE)
 
         # number related NSW verbalization
