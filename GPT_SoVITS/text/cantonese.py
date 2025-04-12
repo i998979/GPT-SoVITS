@@ -179,6 +179,7 @@ def get_jyutping(text):
     jyutping_converter = ToJyutping.customize({'尼': 'lei4', '請': 'cing2'})
     syllables = jyutping_converter.get_jyutping_list(text)
     syllables = [(char, 'sing4' if jyutping == 'seng4' else jyutping) for char, jyutping in syllables]
+    syllables = [(char, 'wun3' if jyutping == 'wun6' else jyutping) for char, jyutping in syllables]
 
     for word, syllable in syllables:
         if punct_pattern.match(word):
