@@ -290,8 +290,8 @@ def verbalize_cardinal(value_string: str) -> str:
 def verbalize_digit(value_string: str, alt_one=False) -> str:
     result_symbols = [DIGITS[digit] for digit in value_string]
     result = ''.join(result_symbols)
-    if alt_one:
-        result = result.replace("一", "幺")
+    # if alt_one:
+    #     result = result.replace("一", "幺")
     return result
 
 
